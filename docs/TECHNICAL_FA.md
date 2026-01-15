@@ -5,15 +5,19 @@
 
 ## رابط محلی (بدون نیاز به اینترنت)
 دیش یک رابط gRPC محلی روی این آدرس دارد:
-- `192.168.100.1:9200` (gRPC بومی؛ معمولاً Reflection فعال است)
+- `192.168.100.1:9200` (gRPC بومی)
 
 این کیت با `grpcurl` و ورودی JSON، متد زیر را صدا می‌زند:
 - `SpaceX.API.Device.Device/Handle`
 
+## Reflection اختیاری است (Schema آفلاین داخل کیت)
+در بعضی نسخه‌های فریمور، Reflection برای gRPC غیرفعال است. این کیت یک Schema حداقلی آفلاین داخل خودش دارد تا در این حالت هم کار کند:
+- `proto/starlink.protoset` (ساخته شده از `proto/starlink_minimal.proto`)
+
 ## دستور GPS inhibit (فریمورهای جدید)
 این کیت این پیام را ارسال می‌کند:
 ```json
-{"dish_inhibit_gps":{"inhibit_gps":true}}
+{"dishInhibitGps":{"inhibitGps":true}}
 ```
 
 ## پایداری تنظیم

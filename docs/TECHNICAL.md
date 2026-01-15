@@ -5,15 +5,19 @@ Starlink terminals use GNSS/GPS as a source of **position and time**, which is i
 
 ## Local interface (no internet required)
 The dish exposes a local gRPC interface on:
-- `192.168.100.1:9200` (native gRPC; commonly supports reflection)
+- `192.168.100.1:9200` (native gRPC)
 
 This kit uses `grpcurl` with JSON input to call:
 - `SpaceX.API.Device.Device/Handle`
 
+## Reflection is optional (offline schema included)
+Some firmware versions disable the gRPC reflection API. This kit includes a minimal offline schema so it can still work:
+- `proto/starlink.protoset` (built from `proto/starlink_minimal.proto`)
+
 ## GPS inhibit command (newer firmware)
 This kit sends:
 ```json
-{"dish_inhibit_gps":{"inhibit_gps":true}}
+{"dishInhibitGps":{"inhibitGps":true}}
 ```
 
 ## Persistence

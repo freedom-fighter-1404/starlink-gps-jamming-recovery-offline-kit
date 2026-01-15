@@ -14,7 +14,8 @@
 - **IP دیش:** `192.168.100.1`
 - **پورت:** `9200`
 - **متد:** `SpaceX.API.Device.Device/Handle`
-- **درخواست:** `dish_inhibit_gps`
+- **درخواست:** `dish_inhibit_gps` (در JSON: `dishInhibitGps`)
+- **Schema آفلاین:** `proto/starlink.protoset`
 
 اگر IP/دامنه‌های دیگری دیدید یا چیزی شبیه ردیابی/ارسال اطلاعات بود، **کیت را اجرا نکنید**.
 

@@ -17,7 +17,7 @@ If you downloaded a Release ZIP, verify its SHA-256 first (see docs/VERIFY.md).
    If it becomes enabled again after reboot/updates, choose "Daemon disable" (re-sends every 5 minutes).
 
 4) If "Disable GPS" fails:
-   - Choose "Probe" to check if your firmware supports dish_inhibit_gps.
+   - Choose "Probe" to check connectivity and (if available) whether the live schema includes dish_inhibit_gps.
    - If not supported, use the Starlink app toggle if available, or see:
      docs/OLDER_FIRMWARE.md
 

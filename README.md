@@ -1,5 +1,7 @@
 # Starlink Offline GPS Anti‑Jamming Kit (Iran)
 
+![Starlink Offline GPS Anti‑Jamming Kit](docs/media/hero.jpg)
+
 [English](#english) | [فارسی](#فارسی)
 
 ## English
@@ -10,6 +12,7 @@ It includes:
 - Click‑to‑run launchers for **Windows / macOS / Linux**
 - Bundled `grpcurl` binaries (no internet needed after you have the folder)
 - A safe **Probe** mode to check whether your firmware exposes the required request field
+- Offline gRPC schema included (works even if reflection is disabled)
 - Bilingual documentation (English + فارسی)
 
 ### Download (GitHub Releases)
@@ -18,10 +21,10 @@ Get this kit from the official Releases page:
 `https://github.com/freedom-fighter-1404/starlink-gps-jamming-recovery-offline-kit/releases`
 
 Choose **ONE** ZIP:
-- **Windows:** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_windows.zip`
-- **macOS (Intel + Apple Silicon):** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_macos.zip`
-- **Linux (x86_64 + arm64):** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_linux.zip`
-- **All platforms (bigger):** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_all-platforms.zip`
+- **Windows:** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_windows.zip`
+- **macOS (Intel + Apple Silicon):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_macos.zip`
+- **Linux (x86_64 + arm64):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_linux.zip`
+- **All platforms (bigger):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_all-platforms.zip`
 
 For verification, also download the matching:
 - `…zip.sha256` (required)
@@ -60,7 +63,7 @@ This project provides **SHA‑256** checksums and may also provide **OpenSSH sig
 ### What it does (based on public references)
 When supported by your Starlink firmware, it sends this local gRPC request:
 
-`{"dish_inhibit_gps":{"inhibit_gps":true}}`
+`{"dishInhibitGps":{"inhibitGps":true}}`
 
 to:
 
@@ -86,6 +89,7 @@ to:
 - فایل‌های اجرایی “کلیک و اجرا” برای **Windows / macOS / Linux**
 - باینری آماده‌ی `grpcurl` (بعد از داشتن پوشه، اینترنت لازم نیست)
 - حالت **Probe** برای بررسی اینکه فریمور شما فیلد مورد نیاز را دارد یا نه
+- Schema آفلاین داخل کیت (حتی اگر Reflection غیرفعال باشد هم کار می‌کند)
 - مستندات دو زبانه (English + فارسی)
 
 ### امنیت و صحت‌سنجی (حتماً قبل از اجرا)
@@ -100,10 +104,10 @@ to:
 `https://github.com/freedom-fighter-1404/starlink-gps-jamming-recovery-offline-kit/releases`
 
 فقط **یکی** از فایل‌ها را دانلود کنید:
-- **Windows:** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_windows.zip`
-- **macOS (Intel + Apple Silicon):** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_macos.zip`
-- **Linux (x86_64 + arm64):** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_linux.zip`
-- **همه سیستم‌ها (حجم بیشتر):** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_all-platforms.zip`
+- **Windows:** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_windows.zip`
+- **macOS (Intel + Apple Silicon):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_macos.zip`
+- **Linux (x86_64 + arm64):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_linux.zip`
+- **همه سیستم‌ها (حجم بیشتر):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_all-platforms.zip`
 
 برای صحت‌سنجی، فایل‌های کنار آن را هم دانلود کنید:
 - `…zip.sha256` (الزامی)
@@ -138,7 +142,7 @@ to:
 ### این کیت چه کاری می‌کند؟ (بر اساس منابع عمومی)
 در صورت پشتیبانی فریمور، این درخواست gRPC را به صورت محلی ارسال می‌کند:
 
-`{"dish_inhibit_gps":{"inhibit_gps":true}}`
+`{"dishInhibitGps":{"inhibitGps":true}}`
 
 به آدرس:
 
@@ -148,6 +152,6 @@ to:
 - Windows: `verify_integrity.bat` (یا `verify_integrity.ps1`) را اجرا کنید
 - macOS/Linux: `./verify_integrity.sh` را اجرا کنید
 - راهنمای صحت‌سنجی (Release و هش‌ها): `docs/VERIFY_FA.md`
-- اطلاعات بیشتر: `docs/SECURITY_FA.md` و `docs/AUDIT.md`
+- اطلاعات بیشتر: `docs/SECURITY_FA.md` و `docs/AUDIT.md` و `docs/AUDIT_FA.md`
 
 </div>

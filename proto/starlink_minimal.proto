@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+// Minimal schema for this offline kit.
+//
+// Purpose:
+// - Allows grpcurl to call the dish local gRPC API even when server reflection is disabled.
+// - Includes only the request/response fields used by this toolkit.
+//
+// Field numbers and message/service names are based on publicly available Starlink gRPC proto
+// definitions (see docs/AUDIT.md for references).
+package SpaceX.API.Device;
+
+service Device {
+  rpc Handle(Request) returns (Response);
+}
+
+message Request {
+  oneof request {
+    GetStatusRequest get_status = 1004;
+    DishInhibitGpsRequest dish_inhibit_gps = 2014;
+  }
+}
+
+message Response {
+  oneof response {
+    DishGetStatusResponse dish_get_status = 2004;
+    DishInhibitGpsResponse dish_inhibit_gps = 2013;
+  }
+}
+
+message GetStatusRequest {}
+
+message DishInhibitGpsRequest {
+  bool inhibit_gps = 1;
+}
+
+message DishInhibitGpsResponse {
+  bool inhibit_gps = 1;
+}
+
+message DishGetStatusResponse {
+  DishGpsStats gps_stats = 1015;
+}
+
+message DishGpsStats {
+  bool gps_valid = 1;
+  uint32 gps_sats = 2;
+  bool no_sats_after_ttff = 3;
+  bool inhibit_gps = 4;
+}

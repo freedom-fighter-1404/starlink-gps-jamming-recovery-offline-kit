@@ -6,8 +6,11 @@ REM Uses bundled grpcurl.exe (no internet needed)
 
 set "ROOT=%~dp0"
 set "GRPCURL=%ROOT%bin\grpcurl\windows-x86_64\grpcurl.exe"
-set "DISH_IP=192.168.100.1"
-set "GRPC_PORT=9200"
+set "PROTOSET=%ROOT%proto\starlink.protoset"
+
+REM Advanced: you may override these by setting env vars before running.
+if "%DISH_IP%"=="" set "DISH_IP=192.168.100.1"
+if "%GRPC_PORT%"=="" set "GRPC_PORT=9200"
 set "TARGET=%DISH_IP%:%GRPC_PORT%"
 set "METHOD=SpaceX.API.Device.Device/Handle"
 
@@ -20,6 +23,15 @@ if not exist "%GRPCURL%" (
   echo   %GRPCURL%
   echo
   echo This offline kit expects grpcurl to be bundled.
+  pause
+  exit /b 1
+)
+
+if not exist "%PROTOSET%" (
+  echo ERROR: Offline schema file not found at:
+  echo   %PROTOSET%
+  echo
+  echo This kit includes a protoset so it can work even when reflection is disabled.
   pause
   exit /b 1
 )
@@ -52,14 +64,13 @@ goto menu
 
 :disable
 echo Sending: dish_inhibit_gps (disable GPS)
-"%GRPCURL%" -plaintext -connect-timeout %GRPC_CONNECT_TIMEOUT% -max-time %GRPC_MAX_TIME% -d "{\"dish_inhibit_gps\":{\"inhibit_gps\":true}}" %TARGET% %METHOD%
+"%GRPCURL%" -plaintext -connect-timeout %GRPC_CONNECT_TIMEOUT% -max-time %GRPC_MAX_TIME% -protoset "%PROTOSET%" -d "{\"dishInhibitGps\":{\"inhibitGps\":true}}" %TARGET% %METHOD%
 if errorlevel 1 (
   echo.
   echo FAILED.
   echo Common causes:
   echo   - Not connected to Starlink Wi-Fi / local LAN
   echo   - Older firmware (no dish_inhibit_gps)
-  echo   - Reflection unavailable (try Probe)
   echo.
   echo Next steps:
   echo   - Run Probe from the menu
@@ -72,7 +83,7 @@ goto menu
 
 :enable
 echo Sending: dish_inhibit_gps (enable GPS)
-"%GRPCURL%" -plaintext -connect-timeout %GRPC_CONNECT_TIMEOUT% -max-time %GRPC_MAX_TIME% -d "{\"dish_inhibit_gps\":{\"inhibit_gps\":false}}" %TARGET% %METHOD%
+"%GRPCURL%" -plaintext -connect-timeout %GRPC_CONNECT_TIMEOUT% -max-time %GRPC_MAX_TIME% -protoset "%PROTOSET%" -d "{\"dishInhibitGps\":{\"inhibitGps\":false}}" %TARGET% %METHOD%
 if errorlevel 1 (
   echo.
   echo FAILED. Run Probe from the menu.
@@ -85,14 +96,14 @@ goto menu
 echo Requesting: get_status
 echo (Look for gps/inhibit fields in output)
 echo.
-"%GRPCURL%" -plaintext -connect-timeout %GRPC_CONNECT_TIMEOUT% -max-time %GRPC_MAX_TIME% -d "{\"get_status\":{}}" %TARGET% %METHOD%
+"%GRPCURL%" -plaintext -connect-timeout %GRPC_CONNECT_TIMEOUT% -max-time %GRPC_MAX_TIME% -protoset "%PROTOSET%" -d "{\"getStatus\":{}}" %TARGET% %METHOD%
 echo.
 pause
 goto menu
 
 :probe
-echo [1/3] List services:
-"%GRPCURL%" -plaintext -connect-timeout %GRPC_CONNECT_TIMEOUT% -max-time %GRPC_MAX_TIME% %TARGET% list
+echo [1/2] Connectivity check (getStatus):
+"%GRPCURL%" -plaintext -connect-timeout %GRPC_CONNECT_TIMEOUT% -max-time %GRPC_MAX_TIME% -protoset "%PROTOSET%" -d "{\"getStatus\":{}}" %TARGET% %METHOD%
 if errorlevel 1 (
   echo.
   echo Probe failed: could not connect to %TARGET%.
@@ -102,13 +113,11 @@ if errorlevel 1 (
   goto menu
 )
 echo.
-echo [2/3] Describe request message and filter GPS-ish lines:
-REM findstr is a simple filter; output still depends on reflection support
-"%GRPCURL%" -plaintext -connect-timeout %GRPC_CONNECT_TIMEOUT% -max-time %GRPC_MAX_TIME% %TARGET% describe SpaceX.API.Device.Request | findstr /I "gps inhibit position location gnss constellation"
+echo [2/2] Schema check (offline; does not require reflection):
+"%GRPCURL%" -plaintext -protoset "%PROTOSET%" describe SpaceX.API.Device.Request | findstr /I "dish_inhibit_gps"
 echo.
-echo [3/3] Quick check for dish_inhibit_gps:
-"%GRPCURL%" -plaintext -connect-timeout %GRPC_CONNECT_TIMEOUT% -max-time %GRPC_MAX_TIME% %TARGET% describe SpaceX.API.Device.Request | findstr /I "dish_inhibit_gps"
-echo.
+echo Note: Some devices disable gRPC reflection. This kit does not require reflection.
+echo If Disable GPS fails, see docs\OLDER_FIRMWARE.md.
 pause
 goto menu
 

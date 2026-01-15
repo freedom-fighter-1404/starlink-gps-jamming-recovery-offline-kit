@@ -12,6 +12,9 @@ HANDLE_METHOD="SpaceX.API.Device.Device/Handle"
 GRPC_CONNECT_TIMEOUT="${GRPC_CONNECT_TIMEOUT:-5}"
 GRPC_MAX_TIME="${GRPC_MAX_TIME:-15}"
 
+PROTOSET_DEFAULT="${ROOT_DIR}/proto/starlink.protoset"
+STARLINK_PROTOSET="${STARLINK_PROTOSET:-${PROTOSET_DEFAULT}}"
+
 DEFAULT_INTERVAL_SECONDS=300
 
 usage() {
@@ -31,17 +34,23 @@ Environment overrides:
   GRPC_PORT    (default: 9200)
   GRPC_CONNECT_TIMEOUT (default: 5)
   GRPC_MAX_TIME        (default: 15)
+  STARLINK_PROTOSET    (default: proto/starlink.protoset)
 
 Notes:
   - This only talks to the local dish on your LAN.
-  - Works best when the dish supports server reflection on port 9200.
+  - This kit includes an offline gRPC schema so it can work even when reflection is disabled.
 EOF
 }
 
 grpcurl_plaintext() {
+  local schema_args=()
+  if [[ -f "${STARLINK_PROTOSET}" ]]; then
+    schema_args=(-protoset "${STARLINK_PROTOSET}")
+  fi
   "${GRPCURL}" -plaintext \
     -connect-timeout "${GRPC_CONNECT_TIMEOUT}" \
     -max-time "${GRPC_MAX_TIME}" \
+    "${schema_args[@]}" \
     "$@"
 }
 
@@ -63,7 +72,7 @@ cmd_disable() {
   echo "Sending: dish_inhibit_gps (disable GPS, use constellation positioning when supported)"
   echo "Target: ${TARGET}"
   echo
-  if out="$(send_handle_json '{"dish_inhibit_gps":{"inhibit_gps":true}}' 2>&1)"; then
+  if out="$(send_handle_json '{"dishInhibitGps":{"inhibitGps":true}}' 2>&1)"; then
     if [[ "${out}" != "" ]]; then
       printf "%s\n" "${out}"
     fi
@@ -74,7 +83,6 @@ cmd_disable() {
     echo "Common causes:"
     echo "  - Not connected to Starlink Wi‑Fi / local LAN"
     echo "  - Older firmware (no dish_inhibit_gps)"
-    echo "  - Reflection unavailable (try Probe)"
     echo
     echo "Next steps:"
     echo "  - Run: ./scripts/starlink_gps.sh probe"
@@ -90,7 +98,7 @@ cmd_enable() {
   echo "Sending: dish_inhibit_gps (enable GPS)"
   echo "Target: ${TARGET}"
   echo
-  if out="$(send_handle_json '{"dish_inhibit_gps":{"inhibit_gps":false}}' 2>&1)"; then
+  if out="$(send_handle_json '{"dishInhibitGps":{"inhibitGps":false}}' 2>&1)"; then
     if [[ "${out}" != "" ]]; then
       printf "%s\n" "${out}"
     fi
@@ -108,7 +116,7 @@ cmd_status() {
   echo "Requesting dish status (look for gps/inhibit fields in output)"
   echo "Target: ${TARGET}"
   echo
-  out="$(send_handle_json '{"get_status":{}}' 2>&1 || true)"
+  out="$(send_handle_json '{"getStatus":{}}' 2>&1 || true)"
   printf "%s\n" "${out}"
   echo
   echo "---- highlights (gps|inhibit|position|location|gnss|constellation) ----"
@@ -116,53 +124,42 @@ cmd_status() {
 }
 
 cmd_probe() {
-  echo "Probe: verifying reflection + listing GPS-related request fields"
+  echo "Probe: connectivity + reflection check + GPS command availability"
   echo "Target: ${TARGET}"
   echo
 
-  echo "[1/3] List services:"
-  svc_out="$(grpcurl_plaintext "${TARGET}" list 2>&1 || true)"
-  printf "%s\n" "${svc_out}"
-  echo
-
-  echo "[2/3] Describe request message (SpaceX.API.Device.Request) and filter GPS-ish lines:"
-  req_out="$(grpcurl_plaintext "${TARGET}" describe SpaceX.API.Device.Request 2>&1 || true)"
-
-  if printf "%s\n" "${svc_out}" | grep -qiE "Failed to dial target host|transport: error while dialing|connect:|connection refused|no route to host|context deadline exceeded"; then
+  echo "[1/3] Connectivity check (getStatus):"
+  status_out="$(send_handle_json '{"getStatus":{}}' 2>&1 || true)"
+  if printf "%s\n" "${status_out}" | grep -qiE "Failed to dial target host|transport: error while dialing|connect:|connection refused|no route to host|context deadline exceeded"; then
     echo "✗ Probe failed: could not connect to ${TARGET}."
     echo "  Make sure you are connected to Starlink Wi‑Fi / local LAN, and retry."
     return 1
   fi
+  printf "%s\n" "${status_out}"
+  echo
 
-  if printf "%s\n" "${req_out}" | grep -qiE "does not support the reflection API|server reflection|reflection"; then
-    if printf "%s\n" "${req_out}" | grep -qiE "does not support the reflection API"; then
-      echo "✗ Probe failed: the dish does not expose the reflection API to grpcurl."
-      echo "  Try the Starlink app toggle if available, or see docs for older firmware."
-      return 1
+  echo "[2/3] Reflection check (optional; some firmwares disable it):"
+  reflect_out="$("${GRPCURL}" -plaintext -connect-timeout "${GRPC_CONNECT_TIMEOUT}" -max-time "${GRPC_MAX_TIME}" "${TARGET}" list 2>&1 || true)"
+  if printf "%s\n" "${reflect_out}" | grep -qiE "does not support the reflection API"; then
+    echo "ℹ Reflection is disabled on this device."
+    echo "  That's OK. This kit includes an offline schema and does not require reflection."
+  else
+    printf "%s\n" "${reflect_out}"
+  fi
+  echo
+
+  echo "[3/3] GPS command check:"
+  if printf "%s\n" "${reflect_out}" | grep -qiE "does not support the reflection API"; then
+    echo "Reflection is disabled, so we cannot list fields from the live schema."
+    echo "Try: Disable GPS. If it fails, follow docs/OLDER_FIRMWARE.md."
+  else
+    req_out="$("${GRPCURL}" -plaintext -connect-timeout "${GRPC_CONNECT_TIMEOUT}" -max-time "${GRPC_MAX_TIME}" "${TARGET}" describe SpaceX.API.Device.Request 2>&1 || true)"
+    if printf "%s\n" "${req_out}" | grep -q "dish_inhibit_gps"; then
+      echo "✓ Found dish_inhibit_gps in SpaceX.API.Device.Request"
+    else
+      echo "✗ dish_inhibit_gps not found (older firmware or restricted schema)."
+      echo "  Try the Starlink app toggle if available, or see docs/OLDER_FIRMWARE.md."
     fi
-  fi
-
-  if printf "%s\n" "${req_out}" | grep -qiE "Failed to dial target host|transport: error while dialing|connect:|connection refused|no route to host|context deadline exceeded"; then
-    echo "✗ Probe failed: could not connect to ${TARGET}."
-    echo "  Make sure you are connected to Starlink Wi‑Fi / local LAN, and retry."
-    return 1
-  fi
-
-  highlights="$(printf "%s\n" "${req_out}" | filter_lines_ci "gps|inhibit|position|location|gnss|constellation" || true)"
-  if [[ "${highlights}" == "" ]]; then
-    echo "(no GPS-related fields printed; full output may explain why)"
-    printf "%s\n" "${req_out}"
-  else
-    printf "%s\n" "${highlights}"
-  fi
-  echo
-
-  echo "[3/3] Quick check: does 'dish_inhibit_gps' appear in the request definition?"
-  if printf "%s\n" "${req_out}" | grep -q "dish_inhibit_gps"; then
-    echo "✓ Found dish_inhibit_gps in SpaceX.API.Device.Request"
-  else
-    echo "✗ dish_inhibit_gps not found (older firmware or reflection unavailable)."
-    echo "  Try the Starlink app toggle if available, or use physical/antenna fallbacks in docs."
   fi
 }
 
@@ -180,7 +177,7 @@ cmd_daemon() {
   while true; do
     ts="$(date '+%Y-%m-%d %H:%M:%S' 2>/dev/null || true)"
     echo "[${ts}] disable -> ${TARGET}"
-    if out="$(send_handle_json '{"dish_inhibit_gps":{"inhibit_gps":true}}' 2>&1)"; then
+    if out="$(send_handle_json '{"dishInhibitGps":{"inhibitGps":true}}' 2>&1)"; then
       if [[ "${out}" != "" ]]; then
         printf "%s\n" "${out}"
       fi

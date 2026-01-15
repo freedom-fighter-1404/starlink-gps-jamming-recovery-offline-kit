@@ -1,5 +1,7 @@
 # کیت آفلاین ضد پارازیت GPS/GNSS استارلینک (ایران)
 
+![کیت آفلاین استارلینک](docs/media/hero.jpg)
+
 > نسخه‌ی دو زبانه (English + فارسی) در `README.md` موجود است.
 
 این مخزن یک کیت **کاملاً آفلاین** است برای زمانی که **پارازیت GPS/GNSS** باعث می‌شود دیش استارلینک نتواند موقعیت/زمان را درست تشخیص دهد و اتصال دچار مشکل شود.
@@ -8,6 +10,7 @@
 - فقط روی تجهیزاتی که مالک/مسئول آن هستید استفاده کنید و قوانین محلی و شرایط سرویس استارلینک را رعایت کنید.
 - این کیت فقط مشکل **پارازیت GPS/GNSS** را هدف می‌گیرد. اگر لینک Ku/Ka هم پارازیت شود، ممکن است باز هم افت کیفیت داشته باشید.
 - این کیت فقط به IP محلی دیش (`192.168.100.1`) وصل می‌شود و به هیچ سرور خارجی متصل نمی‌شود.
+- این کیت یک Schema آفلاین هم داخل خودش دارد (`proto/starlink.protoset`) و حتی اگر Reflection غیرفعال باشد هم می‌تواند کار کند.
 - برای تأیید کامل، تست سخت‌افزار لازم است؛ این کیت بر اساس منابع عمومی تهیه شده و طوری طراحی شده که در صورت ناسازگاری، ایمن و شفاف خطا بدهد.
 
 ## دانلود (GitHub Releases)
@@ -16,10 +19,10 @@
 `https://github.com/freedom-fighter-1404/starlink-gps-jamming-recovery-offline-kit/releases`
 
 فقط **یکی** از فایل‌ها را دانلود کنید:
-- **Windows:** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_windows.zip`
-- **macOS (Intel + Apple Silicon):** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_macos.zip`
-- **Linux (x86_64 + arm64):** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_linux.zip`
-- **همه سیستم‌ها (حجم بیشتر):** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_all-platforms.zip`
+- **Windows:** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_windows.zip`
+- **macOS (Intel + Apple Silicon):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_macos.zip`
+- **Linux (x86_64 + arm64):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_linux.zip`
+- **همه سیستم‌ها (حجم بیشتر):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_all-platforms.zip`
 
 برای صحت‌سنجی، فایل‌های کنار آن را هم دانلود کنید:
 - `…zip.sha256` (الزامی)
@@ -54,7 +57,7 @@
 ## این کیت چه کاری می‌کند؟ (بر اساس منابع عمومی)
 در صورت پشتیبانی فریمور، این درخواست gRPC را به صورت محلی ارسال می‌کند:
 
-`{"dish_inhibit_gps":{"inhibit_gps":true}}`
+`{"dishInhibitGps":{"inhibitGps":true}}`
 
 به آدرس:
 
@@ -64,3 +67,4 @@
 - Windows: `verify_integrity.bat` (یا `verify_integrity.ps1`) را اجرا کنید
 - macOS/Linux: `./verify_integrity.sh` را اجرا کنید
 - راهنمای صحت‌سنجی: `docs/VERIFY_FA.md`
+- اطلاعات بیشتر: `docs/SECURITY_FA.md` و `docs/AUDIT.md` و `docs/AUDIT_FA.md`

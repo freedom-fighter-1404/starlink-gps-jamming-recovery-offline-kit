@@ -14,7 +14,8 @@ For the user-facing scripts (`START_*` and `scripts/starlink_gps.sh`), confirm:
 - **Dish IP:** `192.168.100.1`
 - **Port:** `9200`
 - **Method:** `SpaceX.API.Device.Device/Handle`
-- **Request:** `dish_inhibit_gps`
+- **Request:** `dish_inhibit_gps` (JSON: `dishInhibitGps`)
+- **Offline schema file:** `proto/starlink.protoset`
 
 If you see other IPs/domains, or anything that looks like telemetry/exfiltration, **do not run the kit**.
 
