@@ -16,6 +16,9 @@ If your Starlink settings include this toggle (offline, on local Wi‑Fi):
 - Settings → Advanced → Debug Data
 - Enable: **"Use Starlink positioning exclusively"**
 
+Public reference for the toggle wording:
+- https://olegkutkov.me/2023/11/07/connecting-external-gps-antenna-to-the-starlink-terminal/
+
 ## Step 3: Physical fallback options (firmware-independent)
 When you cannot disable GPS via software, you may need a physical mitigation.
 
@@ -26,6 +29,9 @@ This does **not** depend on a specific firmware command.
 Warnings:
 - Requires opening the terminal (warranty risk).
 - Requires electronics skills and careful RF work.
+
+One public reference:
+- https://olegkutkov.me/2023/11/07/connecting-external-gps-antenna-to-the-starlink-terminal/
 
 ### Option B: Get a firmware update (when possible)
 If you can restore connectivity long enough (even briefly), allow the dish to update firmware.

@@ -22,13 +22,13 @@ If you downloaded this from GitHub Releases:
    - Windows: `verify_integrity.bat`
    - macOS/Linux: `./verify_integrity.sh`
 
-This project uses **SHA‑256** checksums for verification and does **not** provide GPG signatures at this time.
+This project provides **SHA‑256** checksums and may also provide **OpenSSH signatures** (`.sshsig`) for release ZIPs. It does **not** provide PGP/GPG signatures at this time.
 
 ### Important (read first)
 - Use only on equipment you own/control, and follow local laws and Starlink terms.
 - This kit addresses **GPS/GNSS jamming only**. If the Ku/Ka user link is jammed, performance may still be degraded.
 - This kit only talks to the dish on your **local network** (`192.168.100.1`). It does not contact external servers.
-- No one can “verify 100%” without hardware + real jamming conditions; this kit is validated against public references and is designed to fail safely.
+- Hardware testing is required for full confirmation; this kit is based on public references and is designed to fail safely.
 
 ### Quick start (no internet required)
 1) Connect your device to **Starlink Wi‑Fi** (same local network as the dish).
@@ -37,11 +37,11 @@ This project uses **SHA‑256** checksums for verification and does **not** prov
    - macOS: double‑click `START_MAC.command`
    - Linux: run `./START_LINUX.sh`
 3) Choose **Disable GPS**.
-   - If it resets after a reboot, use **Daemon disable** (re-sends every 5 minutes).
+   - If it becomes enabled again after reboot/updates, use **Daemon disable** (re-sends every 5 minutes).
    - Use **Status** to print current output.
    - If Disable GPS fails, run **Probe** and read `docs/OLDER_FIRMWARE.md`.
 
-### What it does (verified against public tooling)
+### What it does (based on public references)
 When supported by your Starlink firmware, it sends this local gRPC request:
 
 `{"dish_inhibit_gps":{"inhibit_gps":true}}`
@@ -82,13 +82,13 @@ to:
    - Windows: `verify_integrity.bat`
    - macOS/Linux: `./verify_integrity.sh`
 
-این پروژه برای صحت‌سنجی از **SHA‑256** استفاده می‌کند و در حال حاضر امضای GPG ارائه نمی‌کند.
+این پروژه برای صحت‌سنجی از **SHA‑256** استفاده می‌کند و ممکن است برای فایل ZIP انتشار، امضای **OpenSSH** (`.sshsig`) هم ارائه کند. در حال حاضر امضای PGP/GPG ارائه نمی‌کند.
 
 ### نکات مهم (حتماً بخوانید)
 - فقط روی تجهیزاتی که مالک/مسئول آن هستید استفاده کنید و قوانین محلی و شرایط سرویس استارلینک را رعایت کنید.
 - این کیت فقط مشکل **پارازیت GPS/GNSS** را هدف می‌گیرد. اگر لینک Ku/Ka هم پارازیت شود، ممکن است باز هم افت کیفیت داشته باشید.
 - این کیت فقط با دیش روی **شبکه محلی** شما صحبت می‌کند (`192.168.100.1`) و به هیچ سرور خارجی وصل نمی‌شود.
-- بدون سخت‌افزار و شرایط واقعی پارازیت، هیچکس نمی‌تواند “۱۰۰٪ تضمین” بدهد؛ این کیت بر اساس منابع عمومی صحت‌سنجی شده و طوری طراحی شده که در صورت ناسازگاری، ایمن و شفاف خطا بدهد.
+- برای تأیید کامل، تست سخت‌افزار لازم است؛ این کیت بر اساس منابع عمومی تهیه شده و طوری طراحی شده که در صورت ناسازگاری، ایمن و شفاف خطا بدهد.
 
 ### شروع سریع (بدون نیاز به اینترنت)
 1) به **Wi‑Fi استارلینک** وصل شوید (همان شبکه محلی دیش).
@@ -97,11 +97,11 @@ to:
    - macOS: روی `START_MAC.command` دوبار کلیک کنید
    - Linux: دستور `./START_LINUX.sh` را اجرا کنید
 3) گزینه **Disable GPS** را انتخاب کنید.
-   - اگر بعد از ریبوت برمی‌گردد، از **Daemon disable** استفاده کنید (هر ۵ دقیقه دوباره ارسال می‌کند).
+   - اگر بعد از ریبوت/آپدیت برمی‌گردد، از **Daemon disable** استفاده کنید (هر ۵ دقیقه دوباره ارسال می‌کند).
    - برای دیدن خروجی وضعیت از **Status** استفاده کنید.
    - اگر خطا داد، **Probe** را اجرا کنید و `docs/OLDER_FIRMWARE_FA.md` را بخوانید.
 
-### این کیت چه کاری می‌کند؟ (بر اساس ابزارهای عمومی)
+### این کیت چه کاری می‌کند؟ (بر اساس منابع عمومی)
 در صورت پشتیبانی فریمور، این درخواست gRPC را به صورت محلی ارسال می‌کند:
 
 `{"dish_inhibit_gps":{"inhibit_gps":true}}`
@@ -114,6 +114,6 @@ to:
 - Windows: `verify_integrity.bat` (یا `verify_integrity.ps1`) را اجرا کنید
 - macOS/Linux: `./verify_integrity.sh` را اجرا کنید
 - راهنمای صحت‌سنجی (Release و هش‌ها): `docs/VERIFY_FA.md`
-- اطلاعات بیشتر: `docs/SECURITY_FA.md` و `docs/AUDIT.md
+- اطلاعات بیشتر: `docs/SECURITY_FA.md` و `docs/AUDIT.md`
 
 </div>

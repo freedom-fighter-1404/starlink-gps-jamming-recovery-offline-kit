@@ -2,12 +2,6 @@
 
 This document explains what was checked when building this kit, and what can/can’t be validated without Starlink hardware.
 
-## What was compared
-- `starlink-iran-toolkit-verified.zip`: documentation + scripts that assume `grpcurl` is already installed.
-- `starlink-iran-toolkit-offline.zip`: offline-focused bundle that includes platform `grpcurl` binaries + click-to-run launchers.
-
-Baseline choice: the offline kit is the better default for non-technical users because it bundles `grpcurl` and provides one-click launchers.
-
 ## Key facts
 
 ### 1) Local dish address/port
@@ -28,3 +22,8 @@ to:
 ## What cannot be verified here (no hardware)
 - Whether your specific firmware exposes `dish_inhibit_gps` (use the kit’s **Probe** mode).
 - Whether disabling GPS fully mitigates your local jamming conditions (depends on jammer type/power/distance, link jamming vs GPS jamming, and antenna environment).
+
+## Public references used for fact-checking
+- Starlink local IP + example gRPC call: https://github.com/sparky8512/starlink-grpc-tools
+- `dish_inhibit_gps` request usage in code: https://github.com/sparky8512/starlink-grpc-tools/blob/ca8c1d5b5ee6fad0d8c1c9b146711e084889f03a/dish_control.py
+- Starlink app toggle wording + GNSS context: https://olegkutkov.me/2023/11/07/connecting-external-gps-antenna-to-the-starlink-terminal/

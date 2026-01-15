@@ -31,6 +31,27 @@ sha256sum your-file.zip
 
 اگر هش مطابقت نداشت، کیت را اجرا نکنید.
 
+## ۱-ب) بررسی امضای فایل ZIP انتشار (اختیاری، قوی‌تر از هش)
+بعضی از انتشارها ممکن است علاوه بر هش، یک فایل **امضای OpenSSH** هم داشته باشند:
+- `…<platform>.zip.sshsig`
+
+برای بررسی امضا، این موارد لازم است:
+- فایل ZIP
+- فایل `.sshsig` مربوط به همان ZIP
+- فایل‌های کلید عمومی (`release_keys/allowed_signers`)
+
+اول، اثر انگشت (Fingerprint) کلید عمومی را از مسیر مستقل تأیید کنید:
+- `release_keys/FINGERPRINT.txt`
+
+سپس بررسی کنید:
+```bash
+ssh-keygen -Y verify \
+  -f release_keys/allowed_signers \
+  -I starlink-gps-jamming-recovery-offline-kit \
+  -n starlink-gps-jamming-recovery-offline-kit-release \
+  -s your-file.zip.sshsig < your-file.zip
+```
+
 ## ۲) صحت‌سنجی پوشه بعد از Extract (صحت‌سنجی داخلی)
 بعد از Extract کردن ZIP، محتویات پوشه را بررسی کنید:
 - Windows: روی `verify_integrity.bat` دوبار کلیک کنید (یا `verify_integrity.ps1` را اجرا کنید)
@@ -45,7 +66,8 @@ sha256sum your-file.zip
   - `…<platform>.zip.sha256` (هش ZIP انتشار)
   - `CHECKSUMS.sha256` (برای فایل‌های اسکریپت/مستندات بعد از Extract)
   - `checksums/BUNDLED_FILES_SHA256.txt` (برای باینری‌های داخل کیت)
-- در حال حاضر، این پروژه امضای GPG ارائه نمی‌کند.
+- بعضی از انتشارها ممکن است امضای **OpenSSH** (`.sshsig`) هم داشته باشند (بخش بالا).
+- در حال حاضر، این پروژه امضای PGP/GPG ارائه نمی‌کند.
 - این صحت‌سنجی آفلاین است و به اینترنت وصل نمی‌شود.
 
 ## جزء داخل کیت: grpcurl

@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-REM Starlink GPS Bypass (Offline) - Windows launcher
+REM Starlink GPS Anti-Jamming (Offline) - Windows launcher
 REM Uses bundled grpcurl.exe (no internet needed)
 
 set "ROOT=%~dp0"
@@ -27,7 +27,7 @@ if not exist "%GRPCURL%" (
 :menu
 cls
 echo ============================================================
-echo Starlink GPS Bypass (Offline) - Windows
+echo Starlink GPS Anti-Jamming (Offline) - Windows
 echo Dish: %TARGET%
 echo ============================================================
 echo 1^) Disable GPS (dish_inhibit_gps=true)

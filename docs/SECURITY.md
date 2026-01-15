@@ -31,4 +31,5 @@ This verification does **not** protect against:
 
 ## If you redistribute this kit
 - Share the official release URL and the release ZIP SHA‑256 via **at least two independent channels**.
+- If you use signatures, also share/confirm the public key fingerprint (`release_keys/FINGERPRINT.txt`) via independent channels.
 - Encourage users to verify the ZIP hash first, then run the built-in integrity checks before use.

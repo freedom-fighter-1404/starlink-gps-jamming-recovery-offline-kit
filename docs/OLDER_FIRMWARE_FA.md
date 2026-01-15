@@ -16,6 +16,9 @@
 - Settings → Advanced → Debug Data
 - گزینه **"Use Starlink positioning exclusively"** را فعال کنید
 
+منبع عمومی برای متن دقیق این گزینه:
+- https://olegkutkov.me/2023/11/07/connecting-external-gps-antenna-to-the-starlink-terminal/
+
 ## گام ۳: راهکارهای فیزیکی (مستقل از فریمور)
 وقتی نتوانید GPS را با نرم‌افزار غیرفعال کنید، ممکن است راهکار فیزیکی لازم باشد.
 
@@ -26,6 +29,9 @@
 هشدار:
 - نیاز به باز کردن دیش (ریسک گارانتی).
 - نیاز به مهارت الکترونیک و کار دقیق RF.
+
+یک منبع عمومی:
+- https://olegkutkov.me/2023/11/07/connecting-external-gps-antenna-to-the-starlink-terminal/
 
 ### گزینه B: آپدیت فریمور (در صورت امکان)
 اگر بتوانید حتی برای مدت کوتاه اتصال را برقرار کنید، اجازه دهید دیش آپدیت شود.

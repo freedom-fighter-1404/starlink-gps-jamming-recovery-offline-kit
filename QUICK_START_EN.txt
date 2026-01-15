@@ -1,5 +1,5 @@
-STARLINK GPS BYPASS (OFFLINE) - QUICK START
-===========================================
+STARLINK GPS ANTI-JAMMING (OFFLINE) - QUICK START
+=================================================
 
 Optional safety (recommended): if you received this kit from an untrusted source,
 run `verify_integrity.bat` (Windows) or `./verify_integrity.sh` (macOS/Linux).
@@ -14,7 +14,7 @@ If you downloaded a Release ZIP, verify its SHA-256 first (see docs/VERIFY.md).
    - Linux:   ./START_LINUX.sh
 
 3) Choose "Disable GPS".
-   If it resets after reboot, choose "Daemon disable" (re-sends every 5 minutes).
+   If it becomes enabled again after reboot/updates, choose "Daemon disable" (re-sends every 5 minutes).
 
 4) If "Disable GPS" fails:
    - Choose "Probe" to check if your firmware supports dish_inhibit_gps.

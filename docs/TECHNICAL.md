@@ -1,4 +1,4 @@
-# Technical notes (brief, verified)
+# Technical notes (brief)
 
 ## Why GPS matters
 Starlink terminals use GNSS/GPS as a source of **position and time**, which is important for "sky search" and scheduling.
@@ -17,7 +17,7 @@ This kit sends:
 ```
 
 ## Persistence
-The GPS inhibit setting is commonly **not preserved across dish reboot**, so daemon mode may be required.
+On some firmware versions, this setting may **reset on reboot/updates**. If you see it revert, use daemon mode.
 
 ## What this kit deliberately does NOT do
 - It does not use unverified gRPC-web “binary payload” strings.

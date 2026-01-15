@@ -31,6 +31,27 @@ sha256sum your-file.zip
 
 If the hash does not match, do not run the kit.
 
+## 1b) Verify the release ZIP signature (optional, stronger than hash)
+Some releases may also include an **OpenSSH signature** sidecar file:
+- `…<platform>.zip.sshsig`
+
+To verify a signature you need:
+- the ZIP
+- the matching `.sshsig`
+- the signer public key material (`release_keys/allowed_signers`)
+
+First, confirm the public key fingerprint out-of-band:
+- `release_keys/FINGERPRINT.txt`
+
+Then verify:
+```bash
+ssh-keygen -Y verify \
+  -f release_keys/allowed_signers \
+  -I starlink-gps-jamming-recovery-offline-kit \
+  -n starlink-gps-jamming-recovery-offline-kit-release \
+  -s your-file.zip.sshsig < your-file.zip
+```
+
 ## 2) Verify the extracted folder (built-in integrity checks)
 After extracting the ZIP, verify the folder contents:
 - Windows: double‑click `verify_integrity.bat` (or run `verify_integrity.ps1`)
@@ -45,7 +66,8 @@ If verification prints `OK: Integrity checks passed.`, then:
   - `…<platform>.zip.sha256` (release ZIP hash)
   - `CHECKSUMS.sha256` (scripts/docs after extraction)
   - `checksums/BUNDLED_FILES_SHA256.txt` (bundled binaries)
-- This project does **not** include GPG signatures at this time.
+- Some releases may also include **OpenSSH signatures** (`.sshsig`). See above.
+- This project does **not** include PGP/GPG signatures at this time.
 - Verification is offline and does not contact the internet.
 
 ## Bundled component: grpcurl

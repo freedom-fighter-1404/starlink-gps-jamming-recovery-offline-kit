@@ -16,7 +16,7 @@ DEFAULT_INTERVAL_SECONDS=300
 
 usage() {
   cat <<'EOF'
-Starlink GPS bypass helper (offline)
+Starlink GPS anti-jamming helper (offline)
 
 Usage:
   ./scripts/starlink_gps.sh disable
@@ -198,7 +198,7 @@ cmd_menu() {
   while true; do
     cat <<EOF
 ============================================================
-Starlink GPS Bypass (Offline)
+Starlink GPS Anti-Jamming (Offline)
 Dish: ${TARGET}
 ============================================================
 1) Disable GPS (dish_inhibit_gps=true)

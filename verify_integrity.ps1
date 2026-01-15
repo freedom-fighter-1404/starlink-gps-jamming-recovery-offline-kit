@@ -30,6 +30,8 @@ function Test-ChecksumFile {
     if ($trimmed -match "^([0-9a-fA-F]{64})\s+(.+)$") {
       $expected = $matches[1].ToLowerInvariant()
       $relativePath = $matches[2].Trim()
+      $relativePath = $relativePath -replace '^[.][\\/]', ''
+      $relativePath = $relativePath -replace '/', '\\'
 
       $fullPath = Join-Path $BaseDir $relativePath
       if (-not (Test-Path -LiteralPath $fullPath -PathType Leaf)) {
