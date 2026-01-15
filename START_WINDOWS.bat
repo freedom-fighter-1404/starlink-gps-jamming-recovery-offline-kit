@@ -128,7 +128,7 @@ echo.
 
 :daemon_loop
 echo [%time%] disable -> %TARGET%
-"%GRPCURL%" -plaintext -connect-timeout %GRPC_CONNECT_TIMEOUT% -max-time %GRPC_MAX_TIME% -d "{\"dish_inhibit_gps\":{\"inhibit_gps\":true}}" %TARGET% %METHOD%
+"%GRPCURL%" -plaintext -connect-timeout %GRPC_CONNECT_TIMEOUT% -max-time %GRPC_MAX_TIME% -protoset "%PROTOSET%" -d "{\"dishInhibitGps\":{\"inhibitGps\":true}}" %TARGET% %METHOD%
 echo.
 timeout /t 300 /nobreak >nul
 goto daemon_loop

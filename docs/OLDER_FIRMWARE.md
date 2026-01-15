@@ -20,10 +20,9 @@ If reflection is disabled, Probe cannot list live fields. In that case, the prac
 - Try **Disable GPS**
 - If it fails, continue with Step 2 and Step 3 below.
 
-## Step 2: Try the official Starlink setting (if present)
-If your Starlink settings include this toggle (offline, on local Wi‑Fi):
-- Settings → Advanced → Debug Data
-- Enable: **"Use Starlink positioning exclusively"**
+## Step 2: Try the official Starlink app setting (if present)
+In the official Starlink app (connected to the dish over local Wi‑Fi), look for a toggle named:
+- **"Use Starlink positioning exclusively"** (its location can vary by app version)
 
 Public reporting indicates this tells the terminal **not to use GPS**, which can make GPS jamming ineffective. Reported trade-offs:
 - Startup/acquisition may take longer.
