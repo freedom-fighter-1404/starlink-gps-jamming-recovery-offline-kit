@@ -10,11 +10,29 @@
 - این کیت فقط به IP محلی دیش (`192.168.100.1`) وصل می‌شود و به هیچ سرور خارجی متصل نمی‌شود.
 - برای تأیید کامل، تست سخت‌افزار لازم است؛ این کیت بر اساس منابع عمومی تهیه شده و طوری طراحی شده که در صورت ناسازگاری، ایمن و شفاف خطا بدهد.
 
+## دانلود (GitHub Releases)
+این کیت را از صفحه رسمی انتشارها (Releases) دریافت کنید:
+
+`https://github.com/freedom-fighter-1404/starlink-gps-jamming-recovery-offline-kit/releases`
+
+فقط **یکی** از فایل‌ها را دانلود کنید:
+- **Windows:** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_windows.zip`
+- **macOS (Intel + Apple Silicon):** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_macos.zip`
+- **Linux (x86_64 + arm64):** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_linux.zip`
+- **همه سیستم‌ها (حجم بیشتر):** `starlink-gps-jamming-recovery-offline-kit_v1.0.2_all-platforms.zip`
+
+برای صحت‌سنجی، فایل‌های کنار آن را هم دانلود کنید:
+- `…zip.sha256` (الزامی)
+- `…zip.sshsig` (اختیاری، اگر وجود داشت)
+
 ## امنیت و صحت‌سنجی (حتماً قبل از اجرا)
 قاعده ساده: **قبل از اجرا، صحت‌سنجی کنید**.
 
+#### هشدار بسیار مهم برای ایران (IRGC / سپاه) — بررسی SHA‑256
+**فرض کنید نسخه‌های دستکاری‌شده با تزریق کد مخرب ممکن است بازنشر شوند. قبل از Extract یا اجرا، حتماً هش SHA‑256 فایل ZIP انتشار را بررسی کنید.**
+
 اگر این کیت را از بخش Releases دریافت کرده‌اید:
-1) فایل ZIP مخصوص سیستم‌عامل خود **و** فایل `.sha256` مربوط به همان ZIP را دانلود کنید.
+1) فایل ZIP مخصوص سیستم‌عامل خود **و** فایل `.sha256` مربوط به همان ZIP (و در صورت وجود، فایل `.sshsig`) را دانلود کنید.
 2) هش SHA‑256 فایل ZIP را با مقدار داخل فایل `.sha256` مقایسه کنید (راهنما: `docs/VERIFY_FA.md`).
 3) ZIP را Extract کنید و سپس صحت‌سنجی داخلی را اجرا کنید:
    - Windows: `verify_integrity.bat`
