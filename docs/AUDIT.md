@@ -30,6 +30,14 @@ Public reporting indicates this can instruct the terminal **not to use GPS**, wh
 ### 5) Physical GPS reception improvements are documented publicly
 External GPS antenna modifications and other reception improvements have been documented publicly (model-specific) and include test results.
 
+### 6) `inhibitGps` may appear as a spoofing countermeasure (public reporting)
+Some public debug telemetry reports show `gpsValid: true` with a normal satellite count while `inhibitGps: true`, and interpret this as the terminal disabling GPS-based positioning due to suspected spoofing.
+
+This is not an official vendor document, and it should not be treated as definitive — but it is consistent with the idea that `inhibitGps` can be set by the terminal as a safety response.
+
+### 7) Firmware age can block recovery (public reporting)
+Some public reporting indicates certain firmware versions may be required for a terminal to continue functioning on the network, and that long-stored/paused hardware may require an update before it will connect.
+
 ## What is deliberately NOT relied on
 - “Universal” gRPC‑web binary payload strings for port `9201` that cannot be validated against the live schema; these are commonly reposted without proof and may be firmware-specific or simply wrong.
 
@@ -45,3 +53,5 @@ External GPS antenna modifications and other reception improvements have been do
   - https://raw.githubusercontent.com/andywwright/starlink-grpc-client/ad72ecdda352e6af288d7bc1ef4bdc29193c68b4/protos/starlink_protos/spacex/api/device/dish.proto
 - Starlink app toggle wording + GNSS/jamming context (article + comments): https://olegkutkov.me/2023/11/07/connecting-external-gps-antenna-to-the-starlink-terminal/
 - Secondary summary of the antenna mod work: https://hackaday.com/2024/03/06/gps-antenna-mods-make-starlink-terminal-immune-to-jammers/
+- Public debug telemetry report discussing `gpsStats.inhibitGps` in Iran: https://github.com/narimangharib/starlink-iran-gps-spoofing/blob/main/starlink-iran.md
+- Public reporting on minimum firmware requirements / mandatory updates: https://www.rvmobileinternet.com/some-starlink-terminals-require-mandatory-software-updates-to-continue-to-function-on-starlinks-network/

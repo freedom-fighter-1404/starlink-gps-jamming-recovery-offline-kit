@@ -21,10 +21,10 @@ Get this kit from the official Releases page:
 `https://github.com/freedom-fighter-1404/starlink-gps-jamming-recovery-offline-kit/releases`
 
 Choose **ONE** ZIP:
-- **Windows:** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_windows.zip`
-- **macOS (Intel + Apple Silicon):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_macos.zip`
-- **Linux (x86_64 + arm64):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_linux.zip`
-- **All platforms (bigger):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_all-platforms.zip`
+- **Windows:** `starlink-gps-jamming-recovery-offline-kit_v1.0.4_windows.zip`
+- **macOS (Intel + Apple Silicon):** `starlink-gps-jamming-recovery-offline-kit_v1.0.4_macos.zip`
+- **Linux (x86_64 + arm64):** `starlink-gps-jamming-recovery-offline-kit_v1.0.4_linux.zip`
+- **All platforms (bigger):** `starlink-gps-jamming-recovery-offline-kit_v1.0.4_all-platforms.zip`
 
 For verification, also download the matching:
 - `…zip.sha256` (required)
@@ -80,78 +80,101 @@ to:
 
 ## فارسی
 
-<div dir="rtl" align="right" markdown="1">
+<div dir="rtl" align="right">
 
-این مخزن یک کیت **کاملاً آفلاین** است برای زمانی که **پارازیت GPS/GNSS** باعث می‌شود دیش استارلینک نتواند موقعیت/زمان را درست تشخیص دهد و اتصال دچار مشکل شود.
+<p>این مخزن یک کیت <strong>کاملاً آفلاین</strong> است برای زمانی که <strong>پارازیت GPS/GNSS</strong> باعث می‌شود دیش استارلینک نتواند موقعیت/زمان را درست تشخیص دهد و اتصال دچار مشکل شود.</p>
 
-این کیت شامل موارد زیر است:
+<p>این کیت شامل موارد زیر است:</p>
 
-- فایل‌های اجرایی “کلیک و اجرا” برای **Windows / macOS / Linux**
-- باینری آماده‌ی `grpcurl` (بعد از داشتن پوشه، اینترنت لازم نیست)
-- حالت **Probe** برای بررسی اینکه فریمور شما فیلد مورد نیاز را دارد یا نه
-- Schema آفلاین داخل کیت (حتی اگر Reflection غیرفعال باشد هم کار می‌کند)
-- مستندات دو زبانه (English + فارسی)
+<ul>
+<li>فایل‌های اجرایی "کلیک و اجرا" برای <strong>Windows / macOS / Linux</strong></li>
+<li>باینری آماده‌ی <code>grpcurl</code> (بعد از داشتن پوشه، اینترنت لازم نیست)</li>
+<li>حالت <strong>Probe</strong> برای بررسی اینکه فریمور شما فیلد مورد نیاز را دارد یا نه</li>
+<li>Schema آفلاین داخل کیت (حتی اگر Reflection غیرفعال باشد هم کار می‌کند)</li>
+<li>مستندات دو زبانه (English + فارسی)</li>
+</ul>
 
-### امنیت و صحت‌سنجی (حتماً قبل از اجرا)
-قاعده ساده: **قبل از اجرا، صحت‌سنجی کنید**.
+<h3>امنیت و صحت‌سنجی (حتماً قبل از اجرا)</h3>
+<p>قاعده ساده: <strong>قبل از اجرا، صحت‌سنجی کنید</strong>.</p>
 
-#### هشدار بسیار مهم برای ایران (IRGC / سپاه) — بررسی SHA‑256
-**فرض کنید نسخه‌های دستکاری‌شده با تزریق کد مخرب ممکن است بازنشر شوند. قبل از Extract یا اجرا، حتماً هش SHA‑256 فایل ZIP انتشار را بررسی کنید.**
+<h4>هشدار بسیار مهم برای ایران (IRGC / سپاه) — بررسی SHA‑256</h4>
+<p><strong>فرض کنید نسخه‌های دستکاری‌شده با تزریق کد مخرب ممکن است بازنشر شوند. قبل از Extract یا اجرا، حتماً هش SHA‑256 فایل ZIP انتشار را بررسی کنید.</strong></p>
 
-### دانلود (GitHub Releases)
-این کیت را از صفحه رسمی انتشارها (Releases) دریافت کنید:
+<h3>دانلود (GitHub Releases)</h3>
+<p>این کیت را از صفحه رسمی انتشارها (Releases) دریافت کنید:</p>
 
-`https://github.com/freedom-fighter-1404/starlink-gps-jamming-recovery-offline-kit/releases`
+<p><code>https://github.com/freedom-fighter-1404/starlink-gps-jamming-recovery-offline-kit/releases</code></p>
 
-فقط **یکی** از فایل‌ها را دانلود کنید:
-- **Windows:** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_windows.zip`
-- **macOS (Intel + Apple Silicon):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_macos.zip`
-- **Linux (x86_64 + arm64):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_linux.zip`
-- **همه سیستم‌ها (حجم بیشتر):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_all-platforms.zip`
+<p>فقط <strong>یکی</strong> از فایل‌ها را دانلود کنید:</p>
+<ul>
+<li><strong>Windows:</strong> <code>starlink-gps-jamming-recovery-offline-kit_v1.0.4_windows.zip</code></li>
+<li><strong>macOS (Intel + Apple Silicon):</strong> <code>starlink-gps-jamming-recovery-offline-kit_v1.0.4_macos.zip</code></li>
+<li><strong>Linux (x86_64 + arm64):</strong> <code>starlink-gps-jamming-recovery-offline-kit_v1.0.4_linux.zip</code></li>
+<li><strong>همه سیستم‌ها (حجم بیشتر):</strong> <code>starlink-gps-jamming-recovery-offline-kit_v1.0.4_all-platforms.zip</code></li>
+</ul>
 
-برای صحت‌سنجی، فایل‌های کنار آن را هم دانلود کنید:
-- `…zip.sha256` (الزامی)
-- `…zip.sshsig` (اختیاری، اگر وجود داشت)
+<p>برای صحت‌سنجی، فایل‌های کنار آن را هم دانلود کنید:</p>
+<ul>
+<li><code>…zip.sha256</code> (الزامی)</li>
+<li><code>…zip.sshsig</code> (اختیاری، اگر وجود داشت)</li>
+</ul>
 
-اگر این کیت را از بخش Releases دریافت کرده‌اید:
-1) فایل ZIP مخصوص سیستم‌عامل خود **و** فایل `.sha256` مربوط به همان ZIP (و در صورت وجود، فایل `.sshsig`) را دانلود کنید.
-2) هش SHA‑256 فایل ZIP را با مقدار داخل فایل `.sha256` مقایسه کنید (راهنما: `docs/VERIFY_FA.md`).
-3) ZIP را Extract کنید و سپس صحت‌سنجی داخلی را اجرا کنید:
-   - Windows: `verify_integrity.bat`
-   - macOS/Linux: `./verify_integrity.sh`
+<p>اگر این کیت را از بخش Releases دریافت کرده‌اید:</p>
+<ol>
+<li>فایل ZIP مخصوص سیستم‌عامل خود <strong>و</strong> فایل <code>.sha256</code> مربوط به همان ZIP (و در صورت وجود، فایل <code>.sshsig</code>) را دانلود کنید.</li>
+<li>هش SHA‑256 فایل ZIP را با مقدار داخل فایل <code>.sha256</code> مقایسه کنید (راهنما: <code>docs/VERIFY_FA.md</code>).</li>
+<li>ZIP را Extract کنید و سپس صحت‌سنجی داخلی را اجرا کنید:
+<ul>
+<li>Windows: <code>verify_integrity.bat</code></li>
+<li>macOS/Linux: <code>./verify_integrity.sh</code></li>
+</ul>
+</li>
+</ol>
 
-این پروژه برای صحت‌سنجی از **SHA‑256** استفاده می‌کند و ممکن است برای فایل ZIP انتشار، امضای **OpenSSH** (`.sshsig`) هم ارائه کند. در حال حاضر امضای PGP/GPG ارائه نمی‌کند.
+<p>این پروژه برای صحت‌سنجی از <strong>SHA‑256</strong> استفاده می‌کند و ممکن است برای فایل ZIP انتشار، امضای <strong>OpenSSH</strong> (<code>.sshsig</code>) هم ارائه کند. در حال حاضر امضای PGP/GPG ارائه نمی‌کند.</p>
 
-### نکات مهم (حتماً بخوانید)
-- فقط روی تجهیزاتی که مالک/مسئول آن هستید استفاده کنید و قوانین محلی و شرایط سرویس استارلینک را رعایت کنید.
-- این کیت فقط مشکل **پارازیت GPS/GNSS** را هدف می‌گیرد. اگر لینک Ku/Ka هم پارازیت شود، ممکن است باز هم افت کیفیت داشته باشید.
-- این کیت فقط با دیش روی **شبکه محلی** شما صحبت می‌کند (`192.168.100.1`) و به هیچ سرور خارجی وصل نمی‌شود.
-- برای تأیید کامل، تست سخت‌افزار لازم است؛ این کیت بر اساس منابع عمومی تهیه شده و طوری طراحی شده که در صورت ناسازگاری، ایمن و شفاف خطا بدهد.
+<h3>نکات مهم (حتماً بخوانید)</h3>
+<ul>
+<li>فقط روی تجهیزاتی که مالک/مسئول آن هستید استفاده کنید و قوانین محلی و شرایط سرویس استارلینک را رعایت کنید.</li>
+<li>این کیت فقط مشکل <strong>پارازیت GPS/GNSS</strong> را هدف می‌گیرد. اگر لینک Ku/Ka هم پارازیت شود، ممکن است باز هم افت کیفیت داشته باشید.</li>
+<li>این کیت فقط با دیش روی <strong>شبکه محلی</strong> شما صحبت می‌کند (<code>192.168.100.1</code>) و به هیچ سرور خارجی وصل نمی‌شود.</li>
+<li>برای تأیید کامل، تست سخت‌افزار لازم است؛ این کیت بر اساس منابع عمومی تهیه شده و طوری طراحی شده که در صورت ناسازگاری، ایمن و شفاف خطا بدهد.</li>
+</ul>
 
-### شروع سریع (بدون نیاز به اینترنت)
-1) به **Wi‑Fi استارلینک** وصل شوید (همان شبکه محلی دیش).
-2) فقط یکی را اجرا کنید:
-   - Windows: روی `START_WINDOWS.bat` دوبار کلیک کنید
-   - macOS: روی `START_MAC.command` دوبار کلیک کنید
-   - Linux: دستور `./START_LINUX.sh` را اجرا کنید
-3) گزینه **Disable GPS** را انتخاب کنید.
-   - اگر بعد از ریبوت/آپدیت برمی‌گردد، از **Daemon disable** استفاده کنید (هر ۵ دقیقه دوباره ارسال می‌کند).
-   - برای دیدن خروجی وضعیت از **Status** استفاده کنید.
-   - اگر خطا داد، **Probe** را اجرا کنید و `docs/OLDER_FIRMWARE_FA.md` را بخوانید.
+<h3>شروع سریع (بدون نیاز به اینترنت)</h3>
+<ol>
+<li>به <strong>Wi‑Fi استارلینک</strong> وصل شوید (همان شبکه محلی دیش).</li>
+<li>فقط یکی را اجرا کنید:
+<ul>
+<li>Windows: روی <code>START_WINDOWS.bat</code> دوبار کلیک کنید</li>
+<li>macOS: روی <code>START_MAC.command</code> دوبار کلیک کنید</li>
+<li>Linux: دستور <code>./START_LINUX.sh</code> را اجرا کنید</li>
+</ul>
+</li>
+<li>گزینه <strong>Disable GPS</strong> را انتخاب کنید.
+<ul>
+<li>اگر بعد از ریبوت/آپدیت برمی‌گردد، از <strong>Daemon disable</strong> استفاده کنید (هر ۵ دقیقه دوباره ارسال می‌کند).</li>
+<li>برای دیدن خروجی وضعیت از <strong>Status</strong> استفاده کنید.</li>
+<li>اگر خطا داد، <strong>Probe</strong> را اجرا کنید و <code>docs/OLDER_FIRMWARE_FA.md</code> را بخوانید.</li>
+</ul>
+</li>
+</ol>
 
-### این کیت چه کاری می‌کند؟ (بر اساس منابع عمومی)
-در صورت پشتیبانی فریمور، این درخواست gRPC را به صورت محلی ارسال می‌کند:
+<h3>این کیت چه کاری می‌کند؟ (بر اساس منابع عمومی)</h3>
+<p>در صورت پشتیبانی فریمور، این درخواست gRPC را به صورت محلی ارسال می‌کند:</p>
 
-`{"dishInhibitGps":{"inhibitGps":true}}`
+<p><code>{"dishInhibitGps":{"inhibitGps":true}}</code></p>
 
-به آدرس:
+<p>به آدرس:</p>
 
-`192.168.100.1:9200 SpaceX.API.Device.Device/Handle`
+<p><code>192.168.100.1:9200 SpaceX.API.Device.Device/Handle</code></p>
 
-### صحت‌سنجی (در محیط‌های پرریسک توصیه می‌شود)
-- Windows: `verify_integrity.bat` (یا `verify_integrity.ps1`) را اجرا کنید
-- macOS/Linux: `./verify_integrity.sh` را اجرا کنید
-- راهنمای صحت‌سنجی (Release و هش‌ها): `docs/VERIFY_FA.md`
-- اطلاعات بیشتر: `docs/SECURITY_FA.md` و `docs/AUDIT.md` و `docs/AUDIT_FA.md`
+<h3>صحت‌سنجی (در محیط‌های پرریسک توصیه می‌شود)</h3>
+<ul>
+<li>Windows: <code>verify_integrity.bat</code> (یا <code>verify_integrity.ps1</code>) را اجرا کنید</li>
+<li>macOS/Linux: <code>./verify_integrity.sh</code> را اجرا کنید</li>
+<li>راهنمای صحت‌سنجی (Release و هش‌ها): <code>docs/VERIFY_FA.md</code></li>
+<li>اطلاعات بیشتر: <code>docs/SECURITY_FA.md</code> و <code>docs/AUDIT.md</code> و <code>docs/AUDIT_FA.md</code></li>
+</ul>
 
 </div>

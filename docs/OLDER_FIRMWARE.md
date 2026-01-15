@@ -48,6 +48,7 @@ One public reference:
 ### Option B: Get a firmware update (when possible)
 If you can restore connectivity long enough (even briefly), allow the dish to update firmware.
 Newer firmwares may include more positioning options.
+Public reporting also suggests some very old firmwares may have trouble rejoining the network until updated (see `docs/AUDIT.md`).
 
 ## Step 4: If disabling GPS doesn’t help
 If you have disabled GPS/positioning and the connection is still unstable, you may be seeing **Ku/Ka user‑link jamming** instead of GPS jamming. This kit does not address user‑link jamming.

@@ -63,6 +63,19 @@ filter_lines_ci() {
   fi
 }
 
+extract_json_scalar() {
+  local key="$1"
+  local text="$2"
+  local line=""
+
+  line="$(printf "%s\n" "${text}" | filter_lines_ci "\"${key}\"" | head -n 1 || true)"
+  if [[ "${line}" == "" ]]; then
+    return 1
+  fi
+
+  printf "%s\n" "${line}" | sed -E "s/.*\"${key}\"[[:space:]]*:[[:space:]]*//; s/[\",]//g"
+}
+
 send_handle_json() {
   local json="$1"
   grpcurl_plaintext -d "${json}" "${TARGET}" "${HANDLE_METHOD}"
@@ -121,6 +134,36 @@ cmd_status() {
   echo
   echo "---- highlights (gps|inhibit|position|location|gnss|constellation) ----"
   printf "%s\n" "${out}" | filter_lines_ci "gps|inhibit|position|location|gnss|constellation" || true
+
+  echo
+  echo "---- summary (if available) ----"
+  gps_valid="$(extract_json_scalar "gpsValid" "${out}" || true)"
+  gps_sats="$(extract_json_scalar "gpsSats" "${out}" || true)"
+  inhibit_gps="$(extract_json_scalar "inhibitGps" "${out}" || true)"
+  no_sats_after_ttff="$(extract_json_scalar "noSatsAfterTtff" "${out}" || true)"
+
+  if [[ "${gps_valid}${gps_sats}${inhibit_gps}${no_sats_after_ttff}" == "" ]]; then
+    echo "(No gpsStats fields found in output.)"
+    return 0
+  fi
+
+  [[ "${gps_valid}" != "" ]] && echo "gpsValid: ${gps_valid}"
+  [[ "${gps_sats}" != "" ]] && echo "gpsSats: ${gps_sats}"
+  [[ "${no_sats_after_ttff}" != "" ]] && echo "noSatsAfterTtff: ${no_sats_after_ttff}"
+  [[ "${inhibit_gps}" != "" ]] && echo "inhibitGps: ${inhibit_gps}"
+
+  echo
+  echo "Interpretation (not definitive):"
+  if [[ "${inhibit_gps}" == "true" ]]; then
+    echo "- GPS is inhibited. If you used \"Disable GPS\", this is expected."
+    echo "- If you did NOT enable it, some public telemetry reports suggest the terminal may inhibit GPS automatically during suspected spoofing."
+  fi
+  if [[ "${gps_valid}" == "false" && "${gps_sats}" == "0" ]]; then
+    echo "- No GPS satellites are tracked. This may indicate strong GPS jamming or a poor sky view."
+  fi
+  if [[ "${gps_valid}" == "true" && "${gps_sats}" != "" && "${gps_sats}" != "0" && "${inhibit_gps}" != "true" ]]; then
+    echo "- GPS appears normal and not inhibited. If you still have outages, the issue may not be GPS/GNSS jamming."
+  fi
 }
 
 cmd_probe() {

@@ -20,6 +20,20 @@ This kit sends:
 {"dishInhibitGps":{"inhibitGps":true}}
 ```
 
+## Reading `gpsStats` (jamming vs spoofing indicators)
+When you run **Status**, the response may include a `gpsStats` block with fields like:
+- `gpsValid` (boolean)
+- `gpsSats` (count)
+- `noSatsAfterTtff` (boolean)
+- `inhibitGps` (boolean)
+
+These can be helpful indicators, but they are **not definitive** on their own.
+
+Common patterns:
+- `inhibitGps: true` means GPS use is inhibited. If you used “Disable GPS”, this is expected.
+- `gpsValid: false` and `gpsSats: 0` may indicate strong GPS jamming or a poor view of the sky.
+- `gpsValid: true` with a normal satellite count but `inhibitGps: true` can happen if you enabled the inhibit setting; some public telemetry reports also suggest the terminal may inhibit GPS automatically during suspected spoofing.
+
 ## Persistence
 On some firmware versions, this setting may **reset on reboot/updates**. If you see it revert, use daemon mode.
 

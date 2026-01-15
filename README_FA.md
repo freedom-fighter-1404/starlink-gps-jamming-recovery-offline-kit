@@ -19,10 +19,10 @@
 `https://github.com/freedom-fighter-1404/starlink-gps-jamming-recovery-offline-kit/releases`
 
 فقط **یکی** از فایل‌ها را دانلود کنید:
-- **Windows:** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_windows.zip`
-- **macOS (Intel + Apple Silicon):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_macos.zip`
-- **Linux (x86_64 + arm64):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_linux.zip`
-- **همه سیستم‌ها (حجم بیشتر):** `starlink-gps-jamming-recovery-offline-kit_v1.0.3_all-platforms.zip`
+- **Windows:** `starlink-gps-jamming-recovery-offline-kit_v1.0.4_windows.zip`
+- **macOS (Intel + Apple Silicon):** `starlink-gps-jamming-recovery-offline-kit_v1.0.4_macos.zip`
+- **Linux (x86_64 + arm64):** `starlink-gps-jamming-recovery-offline-kit_v1.0.4_linux.zip`
+- **همه سیستم‌ها (حجم بیشتر):** `starlink-gps-jamming-recovery-offline-kit_v1.0.4_all-platforms.zip`
 
 برای صحت‌سنجی، فایل‌های کنار آن را هم دانلود کنید:
 - `…zip.sha256` (الزامی)

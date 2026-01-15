@@ -32,6 +32,14 @@
 ### ۵) بهبودهای فیزیکی برای دریافت GPS به‌صورت عمومی مستند شده‌اند
 تغییرات آنتن GPS خارجی و برخی بهبودهای دریافت (بسته به مدل) به‌صورت عمومی مستند شده و شامل نتایج تست هستند.
 
+### ۶) ممکن است `inhibitGps` به‌عنوان اقدام ضد اسپوفینگ دیده شود (گزارش عمومی)
+بعضی گزارش‌های عمومی از تله‌متری Debug نشان می‌دهند در حالی که `gpsValid: true` و تعداد ماهواره‌ها طبیعی است، مقدار `inhibitGps: true` هم دیده می‌شود و آن را به‌عنوان غیرفعال شدن موقعیت‌یابی مبتنی بر GPS به دلیل اسپوفینگ/جعل سیگنال تفسیر می‌کنند.
+
+این یک سند رسمیِ سازنده نیست و نباید قطعی فرض شود — اما با این ایده سازگار است که `inhibitGps` می‌تواند به‌صورت خودکار و برای ایمنی توسط ترمینال فعال شود.
+
+### ۷) قدیمی بودن فریمور می‌تواند بازیابی را سخت کند (گزارش عمومی)
+طبق برخی گزارش‌های عمومی، ممکن است برای ادامه کار روی شبکه، نسخه‌های حداقلی فریمور لازم باشد و تجهیزاتی که مدت طولانی خاموش/بدون استفاده بوده‌اند، قبل از اتصال به آپدیت نیاز داشته باشند.
+
 ## به چه چیزی عمداً تکیه نمی‌کنیم
 - “payload” های باینری “همه‌کاره” برای gRPC‑web روی پورت `9201` که قابل صحت‌سنجی روی Schema زنده نیستند؛ این موارد زیاد بازنشر می‌شوند ولی ممکن است برای فریمور شما غلط باشند.
 
@@ -47,3 +55,5 @@
   - https://raw.githubusercontent.com/andywwright/starlink-grpc-client/ad72ecdda352e6af288d7bc1ef4bdc29193c68b4/protos/starlink_protos/spacex/api/device/dish.proto
 - متن گزینه اپ + توضیح درباره GNSS/jamming (مقاله + نظرات): https://olegkutkov.me/2023/11/07/connecting-external-gps-antenna-to-the-starlink-terminal/
 - خلاصه‌ی ثانویه درباره تغییرات آنتن: https://hackaday.com/2024/03/06/gps-antenna-mods-make-starlink-terminal-immune-to-jammers/
+- گزارش عمومی تله‌متری درباره `gpsStats.inhibitGps` در ایران: https://github.com/narimangharib/starlink-iran-gps-spoofing/blob/main/starlink-iran.md
+- گزارش عمومی درباره حداقل فریمور/آپدیت‌های اجباری: https://www.rvmobileinternet.com/some-starlink-terminals-require-mandatory-software-updates-to-continue-to-function-on-starlinks-network/
