@@ -1,0 +1,2 @@
+grpcurl version: v1.9.3
+Source: https://github.com/fullstorydev/grpcurl/releases/tag/v1.9.3

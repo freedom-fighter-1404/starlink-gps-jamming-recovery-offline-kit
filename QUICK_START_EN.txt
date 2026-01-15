@@ -1,0 +1,24 @@
+STARLINK GPS BYPASS (OFFLINE) - QUICK START
+===========================================
+
+Optional safety (recommended): if you received this kit from an untrusted source,
+run `verify_integrity.bat` (Windows) or `./verify_integrity.sh` (macOS/Linux).
+
+If you downloaded a Release ZIP, verify its SHA-256 first (see docs/VERIFY.md).
+
+1) Connect to Starlink Wi‑Fi (same local network as the dish).
+
+2) Run ONE launcher:
+   - Windows: START_WINDOWS.bat
+   - macOS:   START_MAC.command
+   - Linux:   ./START_LINUX.sh
+
+3) Choose "Disable GPS".
+   If it resets after reboot, choose "Daemon disable" (re-sends every 5 minutes).
+
+4) If "Disable GPS" fails:
+   - Choose "Probe" to check if your firmware supports dish_inhibit_gps.
+   - If not supported, use the Starlink app toggle if available, or see:
+     docs/OLDER_FIRMWARE.md
+
+No internet is needed. This kit includes grpcurl binaries.
