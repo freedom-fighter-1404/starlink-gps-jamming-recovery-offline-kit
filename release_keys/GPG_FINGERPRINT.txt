@@ -1,0 +1,9 @@
+GPG Release Signing Key Fingerprint
+====================================
+
+pub   ed25519 2026-01-17 [SC] [expires: 2028-01-17]
+      F347 AADE 1F70 E6F3 81D4  19F1 EFBE A9B7 3BFC C64A
+uid           [ultimate] Release Signing Key
+
+
+Verify this fingerprint through multiple independent channels.
